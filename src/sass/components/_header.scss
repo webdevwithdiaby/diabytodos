@@ -1,0 +1,22 @@
+.header {
+  padding: 4rem 2rem;
+  background-position: center;
+  background-size: cover;
+  color: var(--light);
+
+  .wrapper {
+    max-width: 375px;
+    margin: 0 auto;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.3rem;
+  }
+
+  &__brand {
+    letter-spacing: 5px;
+  }
+}

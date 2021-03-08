@@ -1,0 +1,19 @@
+.form {
+  background-color: var(--light);
+  padding: 1.1rem 1.5rem;
+  border-radius: 4px;
+  color: var(--lightgrayishblue);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  &__input {
+    display: inline-block;
+    color: var(--darkgrayishblue);
+    flex: 1;
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
+    outline: none;
+  }
+}
