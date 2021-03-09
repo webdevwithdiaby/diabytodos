@@ -1,14 +1,15 @@
 import React from "react";
 import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
 
-import {ReactComponent as CrossLogo} from '../../assets/icon-cross.svg';
+import { ReactComponent as CrossLogo } from "../../assets/icon-cross.svg";
 
-const Todo = () => {
+const Todo = ({ todo }) => {
+  const { title, isCompleted } = todo;
   return (
     <div className="todo">
-      <CustomCheckbox />
-      <h2 className='todo__title' > Todo title </h2>
-      <CrossLogo/>  
+      <CustomCheckbox isCompleted={isCompleted} />
+      <h2 className="todo__title"> {title} </h2>
+      <CrossLogo />
     </div>
   );
 };

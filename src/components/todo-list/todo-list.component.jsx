@@ -1,17 +1,18 @@
 import React from "react";
 import Todo from "../todo/todo.component";
 
-const TodoList = () => {
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectTodosForDisplay } from "../../redux/todos/todos.selectors";
+
+const TodoList = ({ todos }) => {
   return (
     <div className="todo-list">
       <div className="wrapper">
         <div className="todo-list__container todo-list__container1">
-          <Todo />
-          <Todo />
-          <Todo />
-          <Todo />
-          <Todo />
-          <Todo />
+          {todos.map((t) => (
+            <Todo key={t.id} todo={t} />
+          ))}
           <div className="info">
             <p>3 items left</p>
             <p>Clear Completed</p>
@@ -32,4 +33,8 @@ const TodoList = () => {
   );
 };
 
-export default TodoList;
+const mapStateToProps = createStructuredSelector({
+  todos: selectTodosForDisplay,
+});
+
+export default connect(mapStateToProps)(TodoList);
