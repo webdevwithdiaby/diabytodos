@@ -1,9 +1,18 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from "redux";
 
-import todosReducer from './todos/todos.reducer';
+import todosReducer from "./todos/todos.reducer";
+
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+const config = {
+  key: "root",
+  storage,
+  whitelist: ["todosReducer"],
+};
 
 const rootReducer = combineReducers({
-    todosReducer
+  todosReducer,
 });
 
-export default rootReducer;
+export default persistReducer(config, rootReducer);

@@ -12,3 +12,8 @@ export const selectTodosForDisplay = createSelector([selectTodos], (todos) => {
   const keysArr = todos.allIds;
   return keysArr.map((key) => todosObj[key]);
 });
+
+export const selectTodosCount = createSelector(
+  [selectTodos],
+  (todos) => todos.allIds.length
+);

@@ -1,17 +1,33 @@
 import React from "react";
-import CustomCheckbox from "../custom-checkbox/custom-checkbox.component";
 
 import { ReactComponent as CrossLogo } from "../../assets/icon-cross.svg";
 
-const Todo = ({ todo }) => {
+import { connect } from "react-redux";
+import { setCompleted } from "../../redux/todos/todos.actions";
+
+import {deleteTodo} from '../../redux/todos/todos.actions';
+
+const Todo = ({ todo, setCompleted, deleteTodo }) => {
   const { title, isCompleted } = todo;
   return (
     <div className="todo">
-      <CustomCheckbox isCompleted={isCompleted} />
-      <h2 className="todo__title"> {title} </h2>
-      <CrossLogo />
+      <input
+        type="checkbox"
+        checked={isCompleted}
+        onChange={() => setCompleted(todo)}
+      />
+      <h2 className={`todo__title ${isCompleted ? "todo__completed" : null}`}>
+        {" "}
+        {title}{" "}
+      </h2>
+      <CrossLogo onClick={ () => deleteTodo(todo) } />
     </div>
   );
 };
 
-export default Todo;
+const mapDispatchToProps = (dispatch) => ({
+  setCompleted: (todo) => dispatch(setCompleted(todo)),
+  deleteTodo: todo => dispatch(deleteTodo(todo))
+});
+
+export default connect(null, mapDispatchToProps)(Todo);

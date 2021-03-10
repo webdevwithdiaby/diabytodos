@@ -3,9 +3,12 @@ import Todo from "../todo/todo.component";
 
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectTodosForDisplay } from "../../redux/todos/todos.selectors";
+import {
+  selectTodosForDisplay,
+  selectTodosCount,
+} from "../../redux/todos/todos.selectors";
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, itemsLeft }) => {
   return (
     <div className="todo-list">
       <div className="wrapper">
@@ -14,7 +17,7 @@ const TodoList = ({ todos }) => {
             <Todo key={t.id} todo={t} />
           ))}
           <div className="info">
-            <p>3 items left</p>
+            <p> {itemsLeft} items left</p>
             <p>Clear Completed</p>
           </div>
         </div>
@@ -35,6 +38,7 @@ const TodoList = ({ todos }) => {
 
 const mapStateToProps = createStructuredSelector({
   todos: selectTodosForDisplay,
+  itemsLeft: selectTodosCount,
 });
 
 export default connect(mapStateToProps)(TodoList);
